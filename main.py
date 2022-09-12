@@ -1,8 +1,8 @@
 import requests
 import json
 CWR=requests.get("https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread")
-FND=requests.get("https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd")
 SWT=requests.get("https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=swt")
+##CWR parse
 CWR_text=CWR.text
 CWR_again=json.loads(CWR_text)
 for CWR_again_1 in CWR_again["temperature"]["data"]:
@@ -18,4 +18,9 @@ CWR_HK_OUT_23=ListsAreFunAir1.join(ListsAreFun1)
 ListsAreFun2=[CWR_HK_OUT_1, CWR_HK_OUT_23]
 ListsAreFunAir2="@"
 CWR_HK_OUT=ListsAreFunAir2.join(ListsAreFun2)
+##swt parser
+SWT_text=SWT.text
+SWT_again=json.loads(SWT_text)
+SWT_OUT=SWT_again["swt"][0]["desc"]
 print(CWR_HK_OUT)
+print(SWT_OUT)
